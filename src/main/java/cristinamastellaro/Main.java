@@ -65,10 +65,9 @@ public class Main {
                 Collectors.summingDouble(order -> {
             List<Product> products = order.getProducts();
             // Ora dobbiamo fare la somma dei prezzi di questi prodotti
-            List<Double> allPrices = products.stream().map(Product::getPrice).toList();
             double totalSpentForOrder = 0;
-            for (double price: allPrices) {
-                totalSpentForOrder += price;
+            for (Product product: products) {
+                totalSpentForOrder += product.getPrice();
             }
             // Finalmente abbiamo trovato quale numero dare a summingDouble: la somma dei prezzi dei prodotti dell'ordine
             return totalSpentForOrder;
