@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
-        //<Order> list = createOrders(20);
+        //List<Order> list = createOrders(20);
         //System.out.println("La lista presa in considerazione è: " + list);
         //es1(list);
         //es2(list);
