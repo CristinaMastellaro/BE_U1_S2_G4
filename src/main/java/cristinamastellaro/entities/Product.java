@@ -55,7 +55,7 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Nome:" + name +
+        return "\nNome:" + name +
                 ", id: " + id +
                 ", categoria: " + category +
                 ", prezzo:" + price + "€";

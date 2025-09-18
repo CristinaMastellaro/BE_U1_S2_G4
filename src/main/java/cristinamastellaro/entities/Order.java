@@ -77,11 +77,14 @@ public class Order {
 
     @Override
     public String toString() {
-        return "\nProdotti: " + products +
-                ", id:" + id +
+        String wellWrittenProducts = "";
+        for (Product product: products) {
+            wellWrittenProducts += "\n" + product;
+        }
+        return "\n" + customer + ", \nprodotti: " + wellWrittenProducts +
+                ", \nid:" + id +
                 ", status: " + status +
                 ", data dell'ordine: " + orderDate +
-                ", data di consegna:" + deliveryDate +
-                ", cliente: " + customer;
+                ", data di consegna:" + deliveryDate;
     }
 }

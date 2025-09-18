@@ -11,12 +11,14 @@ import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
-        //List<Order> list = createOrders(50);
+        //<Order> list = createOrders(20);
+        //System.out.println("La lista presa in considerazione è: " + list);
         //es1(list);
         //es2(list);
         //es4(list);
 
         List<Product> listProducts = createListProduct(50);
+        System.out.println("La lista di prodotti considerata è: " + listProducts);
         //es3(listProducts);
         es5(listProducts);
 
@@ -52,7 +54,7 @@ public class Main {
 
     public static void es1(List<Order> list){
         Map<Customer, List<Order>> clientMap = list.stream().collect(Collectors.groupingBy(Order::getCustomer));
-        clientMap.forEach((client, ordersList) -> System.out.println("Il cliente " + client + " ha la seguente lista di ordini: " + ordersList + "\n"));
+        clientMap.forEach((client, ordersList) -> System.out.println("\nIl cliente " + client.getName() + " (id " + client.getId() + ") ha la seguente lista di ordini: " + ordersList + "\n"));
     }
 
     public static void es2(List<Order> list) {
@@ -71,13 +73,13 @@ public class Main {
             // Finalmente abbiamo trovato quale numero dare a summingDouble: la somma dei prezzi dei prodotti dell'ordine
             return totalSpentForOrder;
         })));
-        System.out.println("Ecco la lista di quanto ha speso ciascun cliente: ");
+        System.out.println("\nEcco la lista di quanto ha speso ciascun cliente: ");
         totalSpentByClient.forEach((client, totalSpent) -> System.out.println(client.getName() + " ha speso in totale " + Math.floor(totalSpent * 100) / 100 + "€"));
     }
 
     public static void es3(List<Product> list) {
         List<Product> moreExpensiveProducts = list.stream().sorted(Comparator.comparingDouble(Product::getPrice).reversed()).limit(5).toList();
-        System.out.println("I cinque prodotti più costosi della lista sono:");
+        System.out.println("\nI cinque prodotti più costosi della lista sono:");
         moreExpensiveProducts.forEach(System.out::println);
     }
 
@@ -92,13 +94,13 @@ public class Main {
             }
             return sumPricesOrder;
         }).average();
-         if (averagePriceInOrders.isPresent()) System.out.println("La media della spesa totale dei prodotti è " + Math.floor(averagePriceInOrders.getAsDouble() * 100) /100 + "€" );
-         else System.out.println("Non ci sono ordini di cui fare la media");
+         if (averagePriceInOrders.isPresent()) System.out.println("\nLa media della spesa totale dei prodotti è " + Math.floor(averagePriceInOrders.getAsDouble() * 100) /100 + "€" );
+         else System.out.println("\nNon ci sono ordini di cui fare la media");
     }
 
     public static void es5(List<Product> list) {
         Map<String, Double> totalByCategory = list.stream().collect(Collectors.groupingBy(Product::getCategory, Collectors.summingDouble(Product::getPrice)));
-        System.out.println("Ecco la somma totale degli importi per categoria");
+        System.out.println("\nEcco la somma totale degli importi per categoria");
         totalByCategory.forEach((category, sum) -> System.out.println("Dalla categoria " + category + " si sono guadagnati " + sum + "€" ));
     }
 }
